@@ -1,21 +1,19 @@
 package demo.shoppinglist.models.service;
 
-import javax.persistence.Column;
-
-public class UserRegisterServiceModel extends BaseServiceModel {
+public class UserServiceModel extends BaseServiceModel {
 
     private String username;
     private String password;
     private String email;
 
-    public UserRegisterServiceModel() {
+    public UserServiceModel() {
     }
 
     public String getUsername() {
         return username;
     }
 
-    public UserRegisterServiceModel setUsername(String username) {
+    public UserServiceModel setUsername(String username) {
         this.username = username;
         return this;
     }
@@ -24,7 +22,7 @@ public class UserRegisterServiceModel extends BaseServiceModel {
         return password;
     }
 
-    public UserRegisterServiceModel setPassword(String password) {
+    public UserServiceModel setPassword(String password) {
         this.password = password;
         return this;
     }
@@ -33,7 +31,7 @@ public class UserRegisterServiceModel extends BaseServiceModel {
         return email;
     }
 
-    public UserRegisterServiceModel setEmail(String email) {
+    public UserServiceModel setEmail(String email) {
         this.email = email;
         return this;
     }

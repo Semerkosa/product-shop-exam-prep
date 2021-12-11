@@ -1,7 +1,9 @@
 package demo.shoppinglist.service;
 
-import demo.shoppinglist.models.service.UserRegisterServiceModel;
+import demo.shoppinglist.models.service.UserServiceModel;
 
 public interface UserService {
-    void registerUser(UserRegisterServiceModel userRegisterServiceModel);
+    void registerUser(UserServiceModel userServiceModel);
+
+    UserServiceModel findByUsernameAndPassword(String username, String password);
 }
