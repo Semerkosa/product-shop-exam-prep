@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -26,7 +27,7 @@ public class ProductController {
         this.modelMapper = modelMapper;
     }
 
-    @GetMapping("add")
+    @GetMapping("/add")
     public String add(Model model) {
         if (!model.containsAttribute("productAddBindingModel")) {
             model.addAttribute("productAddBindingModel", new ProductAddBindingModel());
@@ -34,7 +35,7 @@ public class ProductController {
         return "product-add";
     }
 
-    @PostMapping("add")
+    @PostMapping("/add")
     public String addConfirm(@Valid ProductAddBindingModel productAddBindingModel,
                              BindingResult bindingResult,
                              RedirectAttributes redirectAttributes) {
@@ -49,6 +50,13 @@ public class ProductController {
 
         productService.addProduct(modelMapper
                 .map(productAddBindingModel, ProductServiceModel.class));
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/buy")
+    public String buyProductById(@RequestParam String id) {
+        productService.buyProductById(id);
 
         return "redirect:/";
     }
