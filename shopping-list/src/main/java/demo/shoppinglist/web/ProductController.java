@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -28,10 +29,15 @@ public class ProductController {
     }
 
     @GetMapping("/add")
-    public String add(Model model) {
+    public String add(Model model, HttpSession session) {
+        if (session.getAttribute("user") == null) {
+            return "redirect:/users/login";
+        }
+
         if (!model.containsAttribute("productAddBindingModel")) {
             model.addAttribute("productAddBindingModel", new ProductAddBindingModel());
         }
+
         return "product-add";
     }
 
@@ -57,6 +63,13 @@ public class ProductController {
     @GetMapping("/buy")
     public String buyProductById(@RequestParam String id) {
         productService.buyProductById(id);
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/buy/all")
+    public String buyAllProducts() {
+        productService.buyAllProducts();
 
         return "redirect:/";
     }

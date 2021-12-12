@@ -15,4 +15,6 @@ public interface ProductService {
     List<ProductViewModel> findAllByCategoryName(CategoryNameEnum drink);
 
     void buyProductById(String id);
+
+    void buyAllProducts();
 }
